@@ -1,10 +1,12 @@
 @extends('dashboard.master')
 
+@section('title', 'Lanchonetes')
+
 @section('breadcrumb')
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
         <ol class="breadcrumb d-sm-flex align-items-center justify-content-between mb-4">
             <li class="breadcrumb-item">Painel de Controle <span>/</span> Restaurantes</li>
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+            <a href="{{ route('tenant.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                 <i class="fas fa-plus fa-sm text-white-50"></i>
                 Cadastro
             </a>
@@ -13,6 +15,8 @@
 @endsection
 
 @section('content')
+    @include('notify::components.notify')
+
     @csrf
     <input type="hidden" id="datatable-route" value="{{ route('tenant.datatable') }}">
 

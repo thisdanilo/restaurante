@@ -8,6 +8,35 @@ jQuery(function () {
         datatable_route = $("#datatable-route").val();
 
     //-----------------------------------------------------
+    // Plugins
+    //-----------------------------------------------------
+
+    $("#im").mask("00000000000");
+
+    $("#ie").mask("00000000000000");
+
+    $("#phone").mask("(00) 00000-0000");
+
+    $("#cnpj").off("input").on("input", checkCnpj);
+
+    /**
+     * Valida CNPJ
+     */
+    function checkCnpj() {
+        $(this).mask("00.000.000/0000-00");
+
+        var cnpj = $(this).val();
+
+        if (validateCnpj(cnpj)) {
+            this.setCustomValidity("");
+
+            return;
+        }
+
+        this.setCustomValidity("CNPJ inválido!");
+    }
+
+    //-----------------------------------------------------
     // Instance of plugins
     //-----------------------------------------------------
 
