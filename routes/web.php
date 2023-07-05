@@ -31,7 +31,7 @@ Route::group([
 
     Route::get('{id}/edit', 'edit')->name('edit');
 
-    Route::put('{id}/update', 'update')->name('update');
+    Route::put('{tenant}/update', 'update')->name('update');
 
     Route::get('{id}/confirm-delete', 'confirmDelete')->name('confirm_delete');
 
