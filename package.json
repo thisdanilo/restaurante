@@ -12,5 +12,9 @@
     "devDependencies": {
         "axios": "^1.1.2",
         "laravel-mix": "^6.0.49"
+    },
+    "dependencies": {
+        "jquery-mask-plugin": "^1.14.16",
+        "ladda": "^1.0.6"
     }
 }

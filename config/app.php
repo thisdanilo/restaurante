@@ -161,6 +161,7 @@ return [
          */
         Laravelista\Ekko\Frameworks\Laravel\ServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
+        Mckenziearts\Notify\LaravelNotifyServiceProvider::class,
 
         /*
          * Application Service Providers...
