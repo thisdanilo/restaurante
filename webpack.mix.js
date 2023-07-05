@@ -13,7 +13,8 @@ const mix = require('laravel-mix');
 
 mix.combine([
     "resources/admin/vendor/fontawesome-free/css/all.min.css",
-    "resources/admin/css/sb-admin-2.min.css"
+    "resources/admin/css/sb-admin-2.min.css",
+    "resources/admin/vendor/datatables/dataTables.bootstrap4.min.css",
 ], "public/css/admin.css");
 
 mix.combine([
@@ -21,4 +22,8 @@ mix.combine([
     "resources/admin/vendor/bootstrap/js/bootstrap.bundle.min.js",
     "resources/admin/vendor/jquery-easing/jquery.easing.min.js",
     "resources/admin/js/sb-admin-2.min.js",
+    "resources/admin/vendor/datatables/jquery.dataTables.min.js",
+    "resources/admin/vendor/datatables/dataTables.bootstrap4.min.js",
 ], "public/js/admin.js");
+
+mix.scripts("resources/admin/js/tenant.js", "public/js/tenant.js");
