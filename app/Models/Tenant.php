@@ -2,14 +2,19 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Presenters\TenantPresenter;
+use TheHiveTeam\Presentable\HasPresentable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Tenant extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    use HasPresentable;
+
+    protected $presenter = TenantPresenter::class;
 
     protected $table = 'tenants';
 
