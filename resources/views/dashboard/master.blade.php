@@ -21,12 +21,14 @@
 
                 <div class="container-fluid">
 
+                    @yield('breadcrumb')
+
                     @yield('content')
 
                 </div>
 
             </div>
-            
+
             @include('dashboard.footer')
 
         </div>
@@ -34,6 +36,8 @@
     </div>
 
     @include('dashboard.footer-scripts')
+
+    @yield('footer-extras')
 
 </body>
 
