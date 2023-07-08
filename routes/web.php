@@ -14,10 +14,15 @@ use App\Http\Controllers\Admin\TenantController;
 |
 */
 
+Route::get('/', function () {
+    return view('auth.login');
+});
+
 Route::group([
     'prefix' => 'dashboard/lanchonetes',
     'as' => 'tenant.',
     'controller' => TenantController::class,
+    'middleware' => 'auth'
 ], function () {
     Route::get('/', 'index')->name('index');
 
@@ -37,3 +42,5 @@ Route::group([
 
     Route::delete('{id}/delete', 'delete')->name('delete');
 });
+
+require __DIR__ . '/auth.php';

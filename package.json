@@ -10,8 +10,13 @@
         "production": "mix --production"
     },
     "devDependencies": {
+        "@tailwindcss/forms": "^0.5.2",
+        "alpinejs": "^3.4.2",
+        "autoprefixer": "^10.4.2",
         "axios": "^1.1.2",
-        "laravel-mix": "^6.0.49"
+        "laravel-mix": "^6.0.49",
+        "postcss": "^8.4.6",
+        "tailwindcss": "^3.1.0"
     },
     "dependencies": {
         "jquery-mask-plugin": "^1.14.16",
