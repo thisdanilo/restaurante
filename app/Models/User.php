@@ -50,4 +50,11 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Role::class);
     }
+
+    /** Obtém as permissões */
+    public function abilities()
+    {
+        // var_dump($this->roles->map->permissions->flatten()->pluck('name'));
+        return $this->roles->map->permissions->flatten()->pluck('name');
+    }
 }

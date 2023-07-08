@@ -3,8 +3,22 @@
         <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
     </a>
     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-        <a class="dropdown-item" href="{{ route('tenant.show', ['id' => $model->id]) }}">Ver</a>
-        <a class="dropdown-item" href="{{ route('tenant.edit', ['id' => $model->id]) }}">Editar</a>
-        <a class="dropdown-item" href="{{ route('tenant.confirm_delete', ['id' => $model->id]) }}">Excluir</a>
+        @can('tenant_show')
+            <a class="dropdown-item" href="{{ route('tenant.show', $model->id) }}">Ver</a>
+        @endcan
+
+        @can('tenant_edit')
+            <a class="dropdown-item" href="{{ route('tenant.edit', $model->id) }}">Editar</a>
+        @endcan
+
+        @can('tenant_delete')
+            <form method="post" action="{{ route('tenant.delete', $model->id) }}">
+
+                {{-- Elementos Ocultos --}}
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="dropdown-item">Excluir</button>
+            </form>
+        @endcan
     </div>
 </div>

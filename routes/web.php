@@ -24,23 +24,21 @@ Route::group([
     'controller' => TenantController::class,
     'middleware' => 'auth'
 ], function () {
-    Route::get('/', 'index')->name('index');
+    Route::get('/', 'index')->middleware('can:tenant_show')->name('index');
 
-    Route::post('/datatable', 'datatable')->name('datatable');
+    Route::post('/datatable', 'datatable')->middleware('can:tenant_show')->name('datatable');
 
-    Route::get('{id}/show', 'show')->name('show');
+    Route::get('{tenant}/ver', 'show')->middleware('can:tenant_show')->name('show');
 
-    Route::get('/create', 'create')->name('create');
+    Route::get('/cadastrar', 'create')->middleware('can:tenant_create')->name('create');
 
-    Route::post('/', 'store')->name('store');
+    Route::post('/', 'store')->middleware('can:tenant_create')->name('store');
 
-    Route::get('{id}/edit', 'edit')->name('edit');
+    Route::get('{tenant}/editar', 'edit')->middleware('can:tenant_edit')->name('edit');
 
-    Route::put('{tenant}/update', 'update')->name('update');
+    Route::put('{tenant}/editar', 'update')->middleware('can:tenant_edit')->name('update');
 
-    Route::get('{id}/confirm-delete', 'confirmDelete')->name('confirm_delete');
-
-    Route::delete('{id}/delete', 'delete')->name('delete');
+    Route::delete('{tenant}/excluir', 'delete')->middleware('can:tenant_delete')->name('delete');
 });
 
 require __DIR__ . '/auth.php';

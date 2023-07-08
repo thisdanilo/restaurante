@@ -12,17 +12,20 @@
 
 @section('content')
 
-    {{-- Dados do Restaurante--}}
+    {{-- Dados do Restaurante --}}
     @include('admin.tenant.partials._tenant', ['show' => true])
 
+
     {{-- Botão --}}
-    <div class="row mt-3">
-        <div class="col-md-12">
-            <a href="{{ route('tenant.edit', $tenant->id) }}" class="btn btn-primary">
-                Editar
-            </a>
+    @can('tenant_edit')
+        <div class="row mt-3">
+            <div class="col-md-12">
+                <a href="{{ route('tenant.edit', $tenant->id) }}" class="btn btn-primary">
+                    Editar
+                </a>
+            </div>
         </div>
-    </div>
+    @endcan
 
 @endsection
 

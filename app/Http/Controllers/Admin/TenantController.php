@@ -79,17 +79,17 @@ class TenantController extends Controller
     }
 
     /** Tela de visualização */
-    public function show(int $id): View
+    public function show(Tenant $tenant): View
     {
-        $tenant = $this->tenant->findOrFail($id);
+        $tenant = $this->tenant->findOrFail($tenant->id);
 
         return view('admin.tenant.show', compact('tenant'));
     }
 
     /** Tela de edição */
-    public function edit(int $id): View
+    public function edit(Tenant $tenant): View
     {
-        $tenant = $this->tenant->findOrFail($id);
+        $tenant = $this->tenant->findOrFail($tenant->id);
 
         return view('admin.tenant.edit', compact('tenant'));
     }
@@ -102,5 +102,15 @@ class TenantController extends Controller
         notify()->success('Atualização realizada com sucesso! ⚡️ ', 'Sucesso');
 
         return redirect()->route('tenant.edit', $tenant->id);
+    }
+
+    /** Remove o registro */
+    public function delete(Tenant $tenant): RedirectResponse
+    {
+        $this->tenant->delete($tenant);
+
+        notify()->success('Exclusão realizada com sucesso! ⚡️ ', 'Sucesso');
+
+        return redirect()->route('tenant.index');
     }
 }
