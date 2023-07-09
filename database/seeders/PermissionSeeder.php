@@ -23,6 +23,11 @@ class PermissionSeeder extends Seeder
             ['name' => 'role_create', 'translated_name' => 'Cadastro Função'],
             ['name' => 'role_edit', 'translated_name' => 'Editar Função'],
             ['name' => 'role_delete', 'translated_name' => 'Excluir Função'],
+
+            ['name' => 'user_show', 'translated_name' => 'Ver Usuário'],
+            ['name' => 'user_create', 'translated_name' => 'Cadastro Usuário'],
+            ['name' => 'user_edit', 'translated_name' => 'Editar Usuário'],
+            ['name' => 'user_delete', 'translated_name' => 'Excluir Usuário'],
         ];
 
         foreach ($permissions as $permission) {
