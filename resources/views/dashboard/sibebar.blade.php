@@ -23,4 +23,11 @@
         </a>
     </li>
 
+    <li class="nav-item {{ Ekko::areActiveRoutes(['role*'], 'active') }}">
+        <a class="nav-link" href="{{ route('role.index') }}">
+            <i class="fas fa-lock"></i>
+            <span>Funções</span>
+        </a>
+    </li>
+
 </ul>

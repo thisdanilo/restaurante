@@ -34,3 +34,5 @@ mix.combine([
 ], "public/js/admin.js");
 
 mix.scripts("resources/admin/js/tenant.js", "public/js/tenant.js");
+
+mix.scripts("resources/admin/js/role.js", "public/js/role.js");

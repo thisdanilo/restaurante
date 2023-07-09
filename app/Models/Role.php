@@ -7,10 +7,13 @@ use App\Models\Permission;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Builder;
 
 class Role extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     protected $table = 'roles';
 
@@ -24,7 +27,7 @@ class Role extends Model
     /** Obtém a relação */
     public function permissions(): BelongsToMany
     {
-        return $this->belongsToMany(Permission::class);
+        return $this->belongsToMany(Permission::class)->withTrashed();
     }
 
     /** Obtém a relação */

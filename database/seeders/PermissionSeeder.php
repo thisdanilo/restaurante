@@ -14,10 +14,15 @@ class PermissionSeeder extends Seeder
     public function run(): void
     {
         $permissions = [
-            ['name' => 'tenant_show', 'translated_name' => 'Ver'],
-            ['name' => 'tenant_create', 'translated_name' => 'Cadastro'],
-            ['name' => 'tenant_edit', 'translated_name' => 'Editar'],
-            ['name' => 'tenant_delete', 'translated_name' => 'Excluir'],
+            ['name' => 'tenant_show', 'translated_name' => 'Ver Restaurante'],
+            ['name' => 'tenant_create', 'translated_name' => 'Cadastro Restaurante'],
+            ['name' => 'tenant_edit', 'translated_name' => 'Editar Restaurante'],
+            ['name' => 'tenant_delete', 'translated_name' => 'Excluir Restaurante'],
+
+            ['name' => 'role_show', 'translated_name' => 'Ver Função'],
+            ['name' => 'role_create', 'translated_name' => 'Cadastro Função'],
+            ['name' => 'role_edit', 'translated_name' => 'Editar Função'],
+            ['name' => 'role_delete', 'translated_name' => 'Excluir Função'],
         ];
 
         foreach ($permissions as $permission) {

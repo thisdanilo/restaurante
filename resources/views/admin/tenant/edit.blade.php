@@ -1,11 +1,11 @@
 @extends('dashboard.master')
 
-@section('title', 'Restaurantes')
+@section('title', 'Restaurante')
 
 @section('breadcrumb')
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
         <ol class="breadcrumb d-sm-flex align-items-center justify-content-between mb-4">
-            <li class="breadcrumb-item">Painel de Controle <span>/</span> Restaurantes</li>
+            <li class="breadcrumb-item">Painel de Controle <span>/</span> Restaurante</li>
         </ol>
     </nav>
 @endsection
