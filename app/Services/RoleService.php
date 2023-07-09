@@ -15,7 +15,9 @@ class RoleService
         DB::beginTransaction();
 
         try {
-            $role = Role::updateOrCreate(['id' => $id], $request);
+            $data = ['name' => $request['name']];
+
+            $role = Role::updateOrCreate(['id' => $id], $data);
 
             $role->permissions()->sync($request['permissions'] ?? []);
 
@@ -42,8 +44,6 @@ class RoleService
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
-
-            dd($e);
 
             abort(500);
         }

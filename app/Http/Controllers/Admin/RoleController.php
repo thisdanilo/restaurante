@@ -64,7 +64,7 @@ class RoleController extends Controller
     }
 
     /** Tela de visualização */
-    public function show($id): View
+    public function show(int $id): View
     {
         $role = $this->role->with('permissions')->findOrFail($id);
 
@@ -72,7 +72,7 @@ class RoleController extends Controller
     }
 
     /** Tela de edição */
-    public function edit($id): View
+    public function edit(int $id): View
     {
         $role = $this->role->findOrFail($id);
 
@@ -94,7 +94,7 @@ class RoleController extends Controller
     }
 
     /** Remove o registro */
-    public function delete($id): RedirectResponse
+    public function delete(int $id): RedirectResponse
     {
         $role = $this->role->findOrFail($id);
 

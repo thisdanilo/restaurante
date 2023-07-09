@@ -8,12 +8,14 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TenantRequest;
+use App\Services\TenantService;
 use Illuminate\Http\RedirectResponse;
 
 class TenantController extends Controller
 {
     public function __construct(
         protected Tenant $tenant,
+        protected TenantService $tenant_service,
     ) {
     }
 
@@ -71,7 +73,7 @@ class TenantController extends Controller
     /** Cria o registro */
     public function store(TenantRequest $request): RedirectResponse
     {
-        $this->tenant->create($request->validated());
+        $this->tenant_service->updateOrCreate($request->all());
 
         notify()->success('Cadastro realizado com sucesso! ⚡️ ', 'Sucesso');
 
@@ -79,25 +81,27 @@ class TenantController extends Controller
     }
 
     /** Tela de visualização */
-    public function show(Tenant $tenant): View
+    public function show(int $id): View
     {
-        $tenant = $this->tenant->findOrFail($tenant->id);
+        $tenant = $this->tenant->findOrFail($id);
 
         return view('admin.tenant.show', compact('tenant'));
     }
 
     /** Tela de edição */
-    public function edit(Tenant $tenant): View
+    public function edit(int $id): View
     {
-        $tenant = $this->tenant->findOrFail($tenant->id);
+        $tenant = $this->tenant->findOrFail($id);
 
         return view('admin.tenant.edit', compact('tenant'));
     }
 
     /** Atualiza o registro */
-    public function update(TenantRequest $request, Tenant $tenant): RedirectResponse
+    public function update(TenantRequest $request, int $id): RedirectResponse
     {
-        $tenant->update($request->validated());
+        $tenant = $this->tenant->findOrFail($id);
+
+        $this->tenant_service->updateOrCreate($request->all(), $tenant->id);
 
         notify()->success('Atualização realizada com sucesso! ⚡️ ', 'Sucesso');
 
@@ -105,9 +109,11 @@ class TenantController extends Controller
     }
 
     /** Remove o registro */
-    public function delete(Tenant $tenant): RedirectResponse
+    public function delete(int $id): RedirectResponse
     {
-        $tenant->delete($tenant->id);
+        $tenant  = $this->tenant->findOrFail($id);
+
+        $this->tenant_service->delete($tenant);
 
         notify()->success('Exclusão realizada com sucesso! ⚡️ ', 'Sucesso');
 
