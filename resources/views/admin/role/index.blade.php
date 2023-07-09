@@ -20,6 +20,7 @@
 @section('content')
     @include('notify::components.notify')
 
+    {{-- Elementos Ocultos --}}
     @csrf
     <input type="hidden" id="datatable-route" value="{{ route('role.datatable') }}">
 

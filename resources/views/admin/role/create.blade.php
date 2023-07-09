@@ -32,7 +32,3 @@
         </div>
     </form>
 @endsection
-
-@section('footer-extras')
-    <script src="{{ mix('js/role.js') }}"></script>
-@endsection
