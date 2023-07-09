@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Tenant;
-use Yajra\DataTables\DataTables;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TenantRequest;
+use App\Models\Tenant;
 use App\Services\TenantService;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
+use Yajra\DataTables\DataTables;
 
 class TenantController extends Controller
 {
@@ -111,7 +111,7 @@ class TenantController extends Controller
     /** Remove o registro */
     public function delete(int $id): RedirectResponse
     {
-        $tenant  = $this->tenant->findOrFail($id);
+        $tenant = $this->tenant->findOrFail($id);
 
         $this->tenant_service->delete($tenant);
 

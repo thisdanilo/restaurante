@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 
 use App\Models\Tenant;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use Illuminate\Foundation\Http\FormRequest;
 
 class TenantRequest extends FormRequest
 {
@@ -31,7 +31,7 @@ class TenantRequest extends FormRequest
             'trade_name' => 'required',
             'cnpj' => [
                 'required',
-                Rule::unique(Tenant::class)->ignore($id)
+                Rule::unique(Tenant::class)->ignore($id),
             ],
             'im' => 'required|max_digits:11|numeric',
             'ie' => 'required|max_digits:14|numeric',

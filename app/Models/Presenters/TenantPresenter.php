@@ -10,9 +10,9 @@ class TenantPresenter extends Presenter
     public function getActive(): string
     {
         if ($this->model->active) {
-            return '<span class="badge bg-success">' . '<span class="text-white">' . $this->model->formatted_active . '</span>' . '</span>';
+            return '<span class="badge bg-success">'.'<span class="text-white">'.$this->model->formatted_active.'</span>'.'</span>';
         }
 
-        return '<span class="badge bg-danger">' . '<span class="text-white">' . $this->model->formatted_active . '</span>' . '</span>';
+        return '<span class="badge bg-danger">'.'<span class="text-white">'.$this->model->formatted_active.'</span>'.'</span>';
     }
 }

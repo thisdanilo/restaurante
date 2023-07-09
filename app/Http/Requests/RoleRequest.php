@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 
 use App\Models\Role;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use Illuminate\Foundation\Http\FormRequest;
 
 class RoleRequest extends FormRequest
 {
@@ -29,7 +29,7 @@ class RoleRequest extends FormRequest
         return [
             'name' => [
                 'required',
-                Rule::unique(Role::class)->ignore($id)
+                Rule::unique(Role::class)->ignore($id),
             ],
         ];
     }

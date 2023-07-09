@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Role;
-use Yajra\DataTables\DataTables;
-use Illuminate\Http\JsonResponse;
-use App\Http\Requests\RoleRequest;
-use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RoleRequest;
 use App\Models\Permission;
+use App\Models\Role;
 use App\Services\RoleService;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
+use Yajra\DataTables\DataTables;
 
 class RoleController extends Controller
 {

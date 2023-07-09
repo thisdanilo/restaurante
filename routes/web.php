@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\TenantController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +23,7 @@ Route::group([
     'prefix' => 'dashboard/restaurantes',
     'as' => 'tenant.',
     'controller' => TenantController::class,
-    'middleware' => 'auth'
+    'middleware' => 'auth',
 ], function () {
     Route::get('/', 'index')->middleware('can:tenant_show')->name('index');
 
@@ -46,7 +46,7 @@ Route::group([
     'prefix' => 'dashboard/funcao',
     'as' => 'role.',
     'controller' => RoleController::class,
-    'middleware' => 'auth'
+    'middleware' => 'auth',
 ], function () {
     Route::get('/', 'index')->middleware('can:role_show')->name('index');
 
@@ -65,4 +65,4 @@ Route::group([
     Route::delete('{id}/excluir', 'delete')->middleware('can:role_delete')->name('delete');
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';
