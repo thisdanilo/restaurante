@@ -107,7 +107,7 @@ class TenantController extends Controller
     /** Remove o registro */
     public function delete(Tenant $tenant): RedirectResponse
     {
-        $this->tenant->delete($tenant);
+        $tenant->delete($tenant->id);
 
         notify()->success('Exclusão realizada com sucesso! ⚡️ ', 'Sucesso');
 
