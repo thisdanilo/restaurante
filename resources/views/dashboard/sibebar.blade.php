@@ -4,7 +4,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-utensils"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Lanchonetes</div>
+        <div class="sidebar-brand-text mx-3">Restaurantes</div>
     </a>
 
 
@@ -19,7 +19,7 @@
     <li class="nav-item {{ Ekko::areActiveRoutes(['tenant*'], 'active') }}">
         <a class="nav-link" href="{{ route('tenant.index') }}">
             <i class="fas fa-store-alt"></i>
-            <span>Lanchonetes</span>
+            <span>Restaurantes</span>
         </a>
     </li>
 

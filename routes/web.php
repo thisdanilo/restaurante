@@ -19,7 +19,7 @@ Route::get('/', function () {
 });
 
 Route::group([
-    'prefix' => 'dashboard/lanchonetes',
+    'prefix' => 'dashboard/restaurantes',
     'as' => 'tenant.',
     'controller' => TenantController::class,
     'middleware' => 'auth'

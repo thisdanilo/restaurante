@@ -1,6 +1,6 @@
 @extends('dashboard.master')
 
-@section('title', 'Lanchonetes')
+@section('title', 'Restaurantes')
 
 @section('breadcrumb')
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
