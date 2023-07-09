@@ -2,5 +2,6 @@
     "/css/admin.css": "/css/admin.css",
     "/js/admin.js": "/js/admin.js",
     "/js/tenant.js": "/js/tenant.js",
-    "/js/role.js": "/js/role.js"
+    "/js/role.js": "/js/role.js",
+    "/js/user.js": "/js/user.js"
 }

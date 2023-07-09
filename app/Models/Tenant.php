@@ -37,10 +37,6 @@ class Tenant extends Model
         'deleted_at',
     ];
 
-    //-----------------------------------------------------------------
-    // Accessors and Mutators
-    //-----------------------------------------------------------------
-
     /** Formata o atributo */
     public function getFormattedActiveAttribute(): string
     {

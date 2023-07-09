@@ -36,3 +36,5 @@ mix.combine([
 mix.scripts("resources/admin/js/tenant.js", "public/js/tenant.js");
 
 mix.scripts("resources/admin/js/role.js", "public/js/role.js");
+
+mix.scripts("resources/admin/js/user.js", "public/js/user.js");

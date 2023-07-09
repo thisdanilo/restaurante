@@ -33,13 +33,33 @@ class UserController extends Controller
      */
     public function datatable(): JsonResponse
     {
-        $model = $this->user->query();
+        $model = $this->user->notAdmin()->notMe()->with('role');
 
         return DataTables::of($model)
+            ->filterColumn(
+                'active',
+                function ($q, $keyword) {
+                    $formatted_active = strtolower(str_replace(['ã', 'Ã'], ['a', 'A'], $keyword));
+
+                    $q->when($formatted_active == 'sim', function ($q) {
+                        $q->where('active', 1);
+                    })
+                        ->when($formatted_active == 'não', function ($q) {
+                            $q->where('active', 0);
+                        });
+                }
+            )
+            ->editColumn(
+                'active',
+                function ($user) {
+                    return $user->present()->getActive;
+                }
+            )
             ->addColumn('action', function ($model) {
-                return view('admin.role.partials._action', compact('model'))->render();
+                return view('admin.user.partials._action', compact('model'))->render();
             })
             ->rawColumns([
+                'active',
                 'action',
             ])
             ->make();
@@ -50,7 +70,7 @@ class UserController extends Controller
     {
         $roles = Role::all();
 
-        return view('admin.user.create', compact('users'));
+        return view('admin.user.create', compact('roles'));
     }
 
     /** Cria o registro */
@@ -66,7 +86,10 @@ class UserController extends Controller
     /** Tela de visualização */
     public function show(int $id): View
     {
-        $user = $this->user->with('roles')->findOrFail($id);
+        $user = $this->user->notAdmin()
+            ->notMe()
+            ->with('role')
+            ->findOrFail($id);
 
         return view('admin.user.show', compact('user'));
     }
@@ -74,9 +97,12 @@ class UserController extends Controller
     /** Tela de edição */
     public function edit(int $id): View
     {
-        $user = $this->user->findOrFail($id);
+        $user = $this->user->notAdmin()
+            ->notMe()
+            ->with('role')
+            ->findOrFail($id);
 
-        $roles = Role::whereNotIn('id', $user->roles->pluck('id'))->get();
+        $roles = Role::where('roles.id', '!=', $user->role->id)->get();
 
         return view('admin.user.edit', compact('user', 'roles'));
     }
@@ -84,7 +110,7 @@ class UserController extends Controller
     /** Atualiza o registro */
     public function update(UserRequest $request, $id): RedirectResponse
     {
-        $user = $this->user->findOrFail($id);
+        $user = $this->user->notAdmin()->notMe()->findOrFail($id);
 
         $this->user_service->updateOrCreate($request->all(), $user->id);
 
@@ -96,7 +122,7 @@ class UserController extends Controller
     /** Remove o registro */
     public function delete(int $id): RedirectResponse
     {
-        $user = $this->user->findOrFail($id);
+        $user = $this->user->notAdmin()->notMe()->findOrFail($id);
 
         $this->user_service->delete($user);
 
