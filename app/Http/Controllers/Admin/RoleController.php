@@ -33,7 +33,7 @@ class RoleController extends Controller
      */
     public function datatable(): JsonResponse
     {
-        $model = $this->role->query();
+        $model = $this->role->notAdmin()->get();
 
         return DataTables::of($model)
             ->addColumn('action', function ($model) {
@@ -66,7 +66,7 @@ class RoleController extends Controller
     /** Tela de visualização */
     public function show(int $id): View
     {
-        $role = $this->role->with('permissions')->findOrFail($id);
+        $role = $this->role->notAdmin()->with('permissions')->findOrFail($id);
 
         return view('admin.role.show', compact('role'));
     }
@@ -74,7 +74,7 @@ class RoleController extends Controller
     /** Tela de edição */
     public function edit(int $id): View
     {
-        $role = $this->role->findOrFail($id);
+        $role = $this->role->notAdmin()->findOrFail($id);
 
         $permissions = Permission::whereNotIn('id', $role->permissions->pluck('id'))->get();
 
@@ -84,7 +84,7 @@ class RoleController extends Controller
     /** Atualiza o registro */
     public function update(RoleRequest $request, $id): RedirectResponse
     {
-        $role = $this->role->findOrFail($id);
+        $role = $this->role->notAdmin()->findOrFail($id);
 
         $this->role_service->updateOrCreate($request->all(), $role->id);
 
@@ -96,7 +96,7 @@ class RoleController extends Controller
     /** Remove o registro */
     public function delete(int $id): RedirectResponse
     {
-        $role = $this->role->findOrFail($id);
+        $role = $this->role->notAdmin()->findOrFail($id);
 
         $this->role_service->delete($role);
 

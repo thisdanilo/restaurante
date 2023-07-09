@@ -33,4 +33,13 @@
         </li>
     @endcan
 
+    @can('user_show')
+        <li class="nav-item {{ Ekko::areActiveRoutes(['user*'], 'active') }}">
+            <a class="nav-link" href="{{ route('user.index') }}">
+                <i class="fas fa-users"></i>
+                <span>Usuários</span>
+            </a>
+        </li>
+    @endcan
+
 </ul>
