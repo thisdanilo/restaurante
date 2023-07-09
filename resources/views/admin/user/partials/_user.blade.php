@@ -52,6 +52,12 @@
                     <input type="password" name="password" class="form-control" placeholder="Deixe vazio se não for mudar">
                 </div>
 
+                {{-- Confirmar --}}
+                <div class="col-sm-3 mb-3">
+                    <label class="form-label">Confirmar Senha<span class="text-danger">*</span></label>
+                    <input type="password" name="password_confirmation" class="form-control" placeholder="Confirmar se for mudar">
+                </div>
+
                 {{-- Função --}}
                 <div class="col-sm-3 mb-3">
                     <label class="form-label">Função <span class="text-danger">*</span></label>
