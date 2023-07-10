@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\TenantController;
 use App\Http\Controllers\Admin\UserController;
@@ -20,6 +21,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('auth.login');
 });
+
+Route::prefix('dashboard')
+    ->as('dashboard.')
+    ->middleware('auth')
+    ->get('/', DashboardController::class)
+    ->name('index');
 
 Route::group([
     'prefix' => 'dashboard/restaurantes',
