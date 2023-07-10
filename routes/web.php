@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\TenantController;
 use App\Http\Controllers\Admin\UserController;
@@ -87,6 +88,29 @@ Route::group([
     Route::put('{id}/editar', 'update')->middleware('can:user_edit')->name('update');
 
     Route::delete('{id}/excluir', 'delete')->middleware('can:user_delete')->name('delete');
+});
+
+Route::group([
+    'prefix' => 'dashboard/categorias',
+    'as' => 'category.',
+    'controller' => CategoryController::class,
+    'middleware' => 'auth',
+], function () {
+    Route::get('/', 'index')->middleware('can:category_show')->name('index');
+
+    Route::post('/datatable', 'datatable')->middleware('can:category_show')->name('datatable');
+
+    Route::get('{id}/ver', 'show')->middleware('can:category_show')->name('show');
+
+    Route::get('/cadastrar', 'create')->middleware('can:category_create')->name('create');
+
+    Route::post('/', 'store')->middleware('can:category_create')->name('store');
+
+    Route::get('{id}/editar', 'edit')->middleware('can:category_edit')->name('edit');
+
+    Route::put('{id}/editar', 'update')->middleware('can:category_edit')->name('update');
+
+    Route::delete('{id}/excluir', 'delete')->middleware('can:category_delete')->name('delete');
 });
 
 require __DIR__.'/auth.php';

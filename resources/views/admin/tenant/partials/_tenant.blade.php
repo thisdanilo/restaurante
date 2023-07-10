@@ -10,11 +10,14 @@
         <div class="row">
 
             @if ($show ?? false)
-                {{-- Usuário --}}
-                <div class="col-sm-3 mb-2">
-                    <label class="form-label">Usuário</label>
-                    <input class="form-control" value="{{ $tenant->user->name }}" readonly>
-                </div>
+
+                @if (auth()->user()->role->id == 1)
+                    {{-- Usuário --}}
+                    <div class="col-sm-3 mb-2">
+                        <label class="form-label">Usuário</label>
+                        <input class="form-control" value="{{ $tenant->user->name }}" readonly>
+                    </div>
+                @endif
 
                 {{-- CNPJ --}}
                 <div class="col-sm-3 mb-2">
