@@ -24,6 +24,7 @@ class TenantService
                 'email' => $request['email'],
                 'phone' => $request['phone'],
                 'active' => $request['active'],
+                'user_id' => $request['user_id'] ?? auth()->user()->id,
             ];
 
             Tenant::updateOrCreate(['id' => $id], $data);

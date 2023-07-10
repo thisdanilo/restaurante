@@ -6,6 +6,7 @@ use App\Models\Presenters\UserPresenter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -27,7 +28,6 @@ class User extends Authenticatable
         'email',
         'password',
         'active',
-        'tenant_id',
         'role_id',
     ];
 
@@ -49,9 +49,9 @@ class User extends Authenticatable
     ];
 
     /** Obtém a relação */
-    public function tenant(): BelongsTo
+    public function tenants(): HasMany
     {
-        return $this->belongsTo(Tenant::class)->withTrashed();
+        return $this->hasMany(Tenant::class);
     }
 
     /** Obtém a relação */
@@ -64,6 +64,12 @@ class User extends Authenticatable
     public function getFormattedActiveAttribute(): string
     {
         return $this->attributes['active'] ? 'Sim' : 'Não';
+    }
+
+    /** Formata o atributo */
+    public function formatTenantName()
+    {
+        return $this->tenants()->pluck('legal_name')->implode(', ');
     }
 
     /** Não Permite regra admin */

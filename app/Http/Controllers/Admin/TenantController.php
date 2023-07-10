@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TenantRequest;
 use App\Models\Tenant;
+use App\Models\User;
 use App\Services\TenantService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
@@ -67,7 +68,9 @@ class TenantController extends Controller
     /** Tela de cadastro */
     public function create(): View
     {
-        return view('admin.tenant.create');
+        $users = User::where('active', 1)->notAdmin()->get();
+
+        return view('admin.tenant.create', compact('users'));
     }
 
     /** Cria o registro */
@@ -83,7 +86,7 @@ class TenantController extends Controller
     /** Tela de visualização */
     public function show(int $id): View
     {
-        $tenant = $this->tenant->findOrFail($id);
+        $tenant = $this->tenant->with('user')->findOrFail($id);
 
         return view('admin.tenant.show', compact('tenant'));
     }
@@ -91,9 +94,11 @@ class TenantController extends Controller
     /** Tela de edição */
     public function edit(int $id): View
     {
-        $tenant = $this->tenant->findOrFail($id);
+        $tenant = $this->tenant->with('user')->findOrFail($id);
 
-        return view('admin.tenant.edit', compact('tenant'));
+        $users = User::where('users.id', '!=', $tenant->user->id)->notAdmin()->get();
+
+        return view('admin.tenant.edit', compact('tenant', 'users'));
     }
 
     /** Atualiza o registro */

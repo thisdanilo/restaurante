@@ -23,7 +23,6 @@
     {{-- Elementos Ocultos --}}
     @csrf
     <input type="hidden" id="datatable-route" value="{{ route('tenant.datatable') }}">
-    <input type="text" id="datatable-route" value="{{ auth()->user()->role->id }}">
 
     <div class="card shadow mb-4">
         <div class="card-body">

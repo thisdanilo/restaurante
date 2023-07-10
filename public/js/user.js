@@ -28,8 +28,7 @@ jQuery(function () {
                 data: "email",
             },
             {
-                data: "tenant.legal_name",
-                name: "tenants.legal_name",
+                data: "tenant"
             },
             {
                 data: "role.name",

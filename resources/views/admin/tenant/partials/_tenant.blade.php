@@ -10,6 +10,12 @@
         <div class="row">
 
             @if ($show ?? false)
+                {{-- Usuário --}}
+                <div class="col-sm-3 mb-2">
+                    <label class="form-label">Usuário</label>
+                    <input class="form-control" value="{{ $tenant->user->name }}" readonly>
+                </div>
+
                 {{-- CNPJ --}}
                 <div class="col-sm-3 mb-2">
                     <label class="form-label">CNPJ</label>
@@ -58,6 +64,21 @@
                     <input class="form-control" value="{{ $tenant->formatted_active }}" readonly>
                 </div>
             @elseif (isset($tenant))
+                @if (auth()->user()->role->id == 1)
+
+                    {{-- Usuário --}}
+                    <div class="col-sm-3 mb-3">
+                        <label class="form-label">Usuário <span class="text-danger">*</span></label>
+                        <select class="form-control" name="user_id" required>
+                            <option value="{{ $tenant->user->id }}" selected>{{ $tenant->user->name }}</option>
+
+                            @foreach ($users as $user)
+                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                @endif
                 {{-- CNPJ --}}
                 <div class="col-sm-3 mb-3">
                     <label class="form-label">CNPJ<span class="text-danger">*</span></label>
@@ -109,6 +130,22 @@
                     </select>
                 </div>
             @else
+                @if (auth()->user()->role->id == 1)
+
+                    {{-- Usuário --}}
+                    <div class="col-sm-3 mb-3">
+                        <label class="form-label">Usuário <span class="text-danger">*</span></label>
+                        <select class="form-control" name="user_id" required>
+                            <option value="">Selecione</option>
+
+                            @foreach ($users as $user)
+                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                @endif
+
                 {{-- CNPJ --}}
                 <div class="col-sm-3 mb-3">
                     <label class="form-label">CNPJ<span class="text-danger">*</span></label>
