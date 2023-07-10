@@ -19,6 +19,7 @@ class UserService
                 'name' => $request['name'],
                 'email' => $request['email'],
                 'active' => $request['active'],
+                'tenant_id' => $request['tenant_id'] ?? auth()->user()->tenant->id,
                 'role_id' => $request['role_id'] ?? auth()->user()->role->id,
             ];
 

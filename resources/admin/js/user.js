@@ -28,6 +28,10 @@ jQuery(function () {
                 data: "email",
             },
             {
+                data: "tenant.legal_name",
+                name: "tenants.legal_name",
+            },
+            {
                 data: "role.name",
                 name: "roles.name",
             },

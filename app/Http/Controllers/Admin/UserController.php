@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Models\Role;
+use App\Models\Tenant;
 use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Contracts\View\View;
@@ -35,8 +36,12 @@ class UserController extends Controller
     {
         $model = $this->user->notAdmin()
             ->notMe()
-            ->with('role')
+            ->with([
+                'tenant',
+                'role',
+            ])
             ->addSelect('users.*')
+            ->leftJoin('tenants', 'tenants.id', '=', 'users.tenant_id')
             ->leftJoin('roles', 'roles.id', '=', 'users.role_id');
 
         return DataTables::of($model)
@@ -74,7 +79,9 @@ class UserController extends Controller
     {
         $roles = Role::all();
 
-        return view('admin.user.create', compact('roles'));
+        $tenants = Tenant::where('active', 1)->get();
+
+        return view('admin.user.create', compact('roles', 'tenants'));
     }
 
     /** Cria o registro */
@@ -92,7 +99,10 @@ class UserController extends Controller
     {
         $user = $this->user->notAdmin()
             ->notMe()
-            ->with('role')
+            ->with([
+                'role',
+                'tenant',
+            ])
             ->findOrFail($id);
 
         return view('admin.user.show', compact('user'));
@@ -103,12 +113,17 @@ class UserController extends Controller
     {
         $user = $this->user->notAdmin()
             ->notMe()
-            ->with('role')
+            ->with([
+                'role',
+                'tenant',
+            ])
             ->findOrFail($id);
 
         $roles = Role::where('roles.id', '!=', $user->role->id)->get();
 
-        return view('admin.user.edit', compact('user', 'roles'));
+        $tenants = Tenant::where('tenants.id', '!=', $user->tenant->id)->get();
+
+        return view('admin.user.edit', compact('user', 'roles', 'tenants'));
     }
 
     /** Atualiza o registro */

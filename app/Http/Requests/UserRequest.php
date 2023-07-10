@@ -39,6 +39,12 @@ class UserRequest extends FormRequest
                 'confirmed',
                 Password::min(8),
             ],
+            'tenant_id' => [
+                Rule::exists('tenants', 'id'),
+            ],
+            'role_id' => [
+                Rule::exists('roles', 'id'),
+            ],
             'active' => 'required|boolean',
         ];
     }

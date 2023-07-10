@@ -5,7 +5,7 @@
 @section('breadcrumb')
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
         <ol class="breadcrumb d-sm-flex align-items-center justify-content-between mb-4">
-            <li class="breadcrumb-item">Painel de Contuser <span>/</span> Usuários</li>
+            <li class="breadcrumb-item">Painel de Controle <span>/</span> Usuários</li>
 
             @can('user_create')
                 <a href="{{ route('user.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
@@ -32,6 +32,7 @@
                         <tr>
                             <th>Nome</th>
                             <th>Email</th>
+                            <th>Restaurante</th>
                             <th>Função</th>
                             <th>Ativo</th>
                             <th style="width: 5%;">Ações</th>

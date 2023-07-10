@@ -22,6 +22,12 @@
                     <input class="form-control" value="{{ $user->email }}" readonly>
                 </div>
 
+                {{-- Restaurante --}}
+                <div class="col-sm-3 mb-2">
+                    <label class="form-label">Restaurante</label>
+                    <input class="form-control" value="{{ $user->tenant->legal_name }}" readonly>
+                </div>
+
                 {{-- Função --}}
                 <div class="col-sm-3 mb-2">
                     <label class="form-label">Função</label>
@@ -57,6 +63,22 @@
                     <label class="form-label">Confirmar Senha<span class="text-danger">*</span></label>
                     <input type="password" name="password_confirmation" class="form-control" placeholder="Confirmar se for mudar">
                 </div>
+
+                @if (auth()->user()->role->id == 1)
+
+                    {{-- Restaurante --}}
+                    <div class="col-sm-3 mb-3">
+                        <label class="form-label">Restaurante <span class="text-danger">*</span></label>
+                        <select class="form-control" name="tenant_id" required>
+                            <option value="{{ $user->tenant->id }}" selected>{{ $user->tenant->legal_name }}</option>
+
+                            @foreach ($tenants as $tenant)
+                                <option value="{{ $tenant->id }}">{{ $tenant->legal_name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                @endif
 
                 @if (auth()->user()->role->id == 1)
 
@@ -106,6 +128,22 @@
                     <label class="form-label">Confirmar Senha<span class="text-danger">*</span></label>
                     <input type="password" name="password_confirmation" class="form-control" required>
                 </div>
+
+                @if (auth()->user()->role->id == 1)
+
+                    {{-- Restaurante --}}
+                    <div class="col-sm-3 mb-3">
+                        <label class="form-label">Restaurante <span class="text-danger">*</span></label>
+                        <select class="form-control" name="tenant_id" required>
+                            <option value="">Selecione</option>
+
+                            @foreach ($tenants as $tenant)
+                                <option value="{{ $tenant->id }}">{{ $tenant->legal_name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                @endif
 
                 @if (auth()->user()->role->id == 1)
 

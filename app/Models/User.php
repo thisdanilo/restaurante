@@ -27,6 +27,7 @@ class User extends Authenticatable
         'email',
         'password',
         'active',
+        'tenant_id',
         'role_id',
     ];
 
@@ -48,9 +49,15 @@ class User extends Authenticatable
     ];
 
     /** Obtém a relação */
+    public function tenant(): BelongsTo
+    {
+        return $this->belongsTo(Tenant::class)->withTrashed();
+    }
+
+    /** Obtém a relação */
     public function role(): BelongsTo
     {
-        return $this->belongsTo(Role::class);
+        return $this->belongsTo(Role::class)->withTrashed();
     }
 
     /** Formata o atributo */
