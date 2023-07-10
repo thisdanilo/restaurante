@@ -62,7 +62,7 @@ class User extends Authenticatable
     /** Não Permite regra admin */
     public function scopeNotAdmin(Builder $query): void
     {
-        $query->where('id', '!=', 1);
+        $query->where('users.id', '!=', 1);
     }
 
     /** Não permite usuário logado */
@@ -70,7 +70,7 @@ class User extends Authenticatable
     {
         $id = auth()->user()->id;
 
-        $query->where('id', '!=', $id);
+        $query->where('users.id', '!=', $id);
     }
 
     /** Obtém as permissões */

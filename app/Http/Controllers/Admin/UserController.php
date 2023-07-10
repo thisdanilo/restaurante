@@ -33,7 +33,11 @@ class UserController extends Controller
      */
     public function datatable(): JsonResponse
     {
-        $model = $this->user->notAdmin()->notMe()->with('role');
+        $model = $this->user->notAdmin()
+            ->notMe()
+            ->with('role')
+            ->addSelect('users.*')
+            ->leftJoin('roles', 'roles.id', '=', 'users.role_id');
 
         return DataTables::of($model)
             ->filterColumn(
