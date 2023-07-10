@@ -58,17 +58,21 @@
                     <input type="password" name="password_confirmation" class="form-control" placeholder="Confirmar se for mudar">
                 </div>
 
-                {{-- Função --}}
-                <div class="col-sm-3 mb-3">
-                    <label class="form-label">Função <span class="text-danger">*</span></label>
-                    <select class="form-control" name="role_id" required>
-                        <option value="{{ $user->role->id }}" selected>{{ $user->role->name }}</option>
+                @if (auth()->user()->role->id == 1)
 
-                        @foreach ($roles as $role)
-                            <option value="{{ $role->id }}">{{ $role->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
+                    {{-- Função --}}
+                    <div class="col-sm-3 mb-3">
+                        <label class="form-label">Função <span class="text-danger">*</span></label>
+                        <select class="form-control" name="role_id" required>
+                            <option value="{{ $user->role->id }}" selected>{{ $user->role->name }}</option>
+
+                            @foreach ($roles as $role)
+                                <option value="{{ $role->id }}">{{ $role->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                @endif
 
                 {{-- Ativo --}}
                 <div class="col-sm-3 mb-2">
@@ -103,17 +107,21 @@
                     <input type="password" name="password_confirmation" class="form-control" required>
                 </div>
 
-                {{-- Função --}}
-                <div class="col-sm-3 mb-3">
-                    <label class="form-label">Função <span class="text-danger">*</span></label>
-                    <select class="form-control" name="role_id" required>
-                        <option value="">Selecione</option>
+                @if (auth()->user()->role->id == 1)
 
-                        @foreach ($roles as $role)
-                            <option value="{{ $role->id }}">{{ $role->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
+                    {{-- Função --}}
+                    <div class="col-sm-3 mb-3">
+                        <label class="form-label">Função <span class="text-danger">*</span></label>
+                        <select class="form-control" name="role_id" required>
+                            <option value="">Selecione</option>
+
+                            @foreach ($roles as $role)
+                                <option value="{{ $role->id }}">{{ $role->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                @endif
 
                 {{-- Ativo --}}
                 <div class="col-sm-3 mb-3">

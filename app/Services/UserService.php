@@ -19,7 +19,7 @@ class UserService
                 'name' => $request['name'],
                 'email' => $request['email'],
                 'active' => $request['active'],
-                'role_id' => $request['role_id'],
+                'role_id' => $request['role_id'] ?? auth()->user()->role->id,
             ];
 
             if (isset($request['password'])) {
