@@ -33,6 +33,15 @@
         </li>
     @endcan
 
+    @can('product_show')
+        <li class="nav-item {{ Ekko::areActiveRoutes(['product*'], 'active') }}">
+            <a class="nav-link" href="{{ route('product.index') }}">
+                <i class="fas fa-hamburger"></i>
+                <span>Produtos</span>
+            </a>
+        </li>
+    @endcan
+
     @can('role_show')
         <li class="nav-item {{ Ekko::areActiveRoutes(['role*'], 'active') }}">
             <a class="nav-link" href="{{ route('role.index') }}">

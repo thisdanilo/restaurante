@@ -40,3 +40,5 @@ mix.scripts("resources/admin/js/role.js", "public/js/role.js");
 mix.scripts("resources/admin/js/user.js", "public/js/user.js");
 
 mix.scripts("resources/admin/js/category.js", "public/js/category.js");
+
+mix.scripts("resources/admin/js/product.js", "public/js/product.js");

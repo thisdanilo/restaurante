@@ -55,6 +55,18 @@ class User extends Authenticatable
     }
 
     /** Obtém a relação */
+    public function categories(): HasMany
+    {
+        return $this->hasMany(Category::class);
+    }
+
+    /** Obtém a relação */
+    public function products(): HasMany
+    {
+        return $this->hasMany(Product::class);
+    }
+
+    /** Obtém a relação */
     public function role(): BelongsTo
     {
         return $this->belongsTo(Role::class)->withTrashed();

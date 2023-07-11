@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Product;
 use App\Models\Tenant;
 use Illuminate\Contracts\View\View;
 
@@ -16,13 +17,17 @@ class DashboardController extends Controller
             $restaurants = Tenant::count();
 
             $categories = Category::count();
+
+            $products = Product::count();
         } else {
 
             $restaurants = Tenant::where('user_id', auth()->user()->id)->count();
 
             $categories = Category::where('user_id', auth()->user()->id)->count();
+
+            $products = Product::where('user_id', auth()->user()->id)->count();
         }
 
-        return view('admin.dashboard.index', compact('restaurants', 'categories'));
+        return view('admin.dashboard.index', compact('restaurants', 'categories', 'products'));
     }
 }
