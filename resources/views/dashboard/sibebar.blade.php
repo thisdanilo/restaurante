@@ -1,6 +1,6 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('tenant.index') }}">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('dashboard.index') }}">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-utensils"></i>
         </div>
@@ -9,8 +9,8 @@
 
     <hr class="sidebar-divider my-0">
 
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('tenant.index') }}">
+    <li class="nav-item {{ Ekko::areActiveRoutes(['dashboard.index'], 'active') }}">
+        <a class="nav-link" href="{{ route('dashboard.index') }}">
             <i class="fas fa-home"></i>
             <span>Dashboard</span></a>
     </li>
@@ -29,6 +29,15 @@
             <a class="nav-link" href="{{ route('category.index') }}">
                 <i class="fas fa-folder"></i>
                 <span>Categorias</span>
+            </a>
+        </li>
+    @endcan
+
+    @can('product_show')
+        <li class="nav-item {{ Ekko::areActiveRoutes(['product*'], 'active') }}">
+            <a class="nav-link" href="{{ route('product.index') }}">
+                <i class="fas fa-hamburger"></i>
+                <span>Produtos</span>
             </a>
         </li>
     @endcan

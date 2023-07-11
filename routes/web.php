@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\TenantController;
 use App\Http\Controllers\Admin\UserController;
@@ -20,6 +22,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('auth.login');
 });
+
+Route::prefix('dashboard')
+    ->as('dashboard.')
+    ->middleware('auth')
+    ->get('/', DashboardController::class)
+    ->name('index');
 
 Route::group([
     'prefix' => 'dashboard/restaurantes',
@@ -111,6 +119,29 @@ Route::group([
     Route::put('{id}/editar', 'update')->middleware('can:category_edit')->name('update');
 
     Route::delete('{id}/excluir', 'delete')->middleware('can:category_delete')->name('delete');
+});
+
+Route::group([
+    'prefix' => 'dashboard/produtos',
+    'as' => 'product.',
+    'controller' => ProductController::class,
+    'middleware' => 'auth',
+], function () {
+    Route::get('/', 'index')->middleware('can:product_show')->name('index');
+
+    Route::post('/datatable', 'datatable')->middleware('can:product_show')->name('datatable');
+
+    Route::get('{id}/ver', 'show')->middleware('can:product_show')->name('show');
+
+    Route::get('/cadastrar', 'create')->middleware('can:product_create')->name('create');
+
+    Route::post('/', 'store')->middleware('can:product_create')->name('store');
+
+    Route::get('{id}/editar', 'edit')->middleware('can:product_edit')->name('edit');
+
+    Route::put('{id}/editar', 'update')->middleware('can:product_edit')->name('update');
+
+    Route::delete('{id}/excluir', 'delete')->middleware('can:product_delete')->name('delete');
 });
 
 require __DIR__.'/auth.php';
