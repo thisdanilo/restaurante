@@ -60,6 +60,9 @@ jQuery(function () {
                 data: "cnpj",
             },
             {
+                data: "phone",
+            },
+            {
                 data: "active",
                 className: "text-center",
             },

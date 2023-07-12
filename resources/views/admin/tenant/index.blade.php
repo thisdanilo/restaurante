@@ -33,6 +33,7 @@
                             <th>Razão Social</th>
                             <th>Nome Fantasia</th>
                             <th>CNPJ</th>
+                            <th>Telefone</th>
                             <th style="width: 5%;">Ativo</th>
                             <th style="width: 5%;">Ações</th>
                         </tr>

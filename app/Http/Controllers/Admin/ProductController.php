@@ -34,7 +34,7 @@ class ProductController extends Controller
      */
     public function datatable(): JsonResponse
     {
-        $model = $this->product->with('user.tenants');
+        $model = $this->product->with('user');
 
         return DataTables::of($model)
             ->filterColumn(
