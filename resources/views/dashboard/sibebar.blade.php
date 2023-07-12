@@ -16,12 +16,23 @@
     </li>
 
     @can('tenant_show')
-        <li class="nav-item {{ Ekko::areActiveRoutes(['tenant*'], 'active') }}">
-            <a class="nav-link" href="{{ route('tenant.index') }}">
-                <i class="fas fa-store-alt"></i>
-                <span>Restaurantes</span>
-            </a>
-        </li>
+
+        @if (auth()->user()->role->id == 1)
+            <li class="nav-item {{ Ekko::areActiveRoutes(['tenant*'], 'active') }}">
+                <a class="nav-link" href="{{ route('tenant.index') }}">
+                    <i class="fas fa-store-alt"></i>
+                    <span>Restaurantes</span>
+                </a>
+            </li>
+        @else
+            <li class="nav-item {{ Ekko::areActiveRoutes(['tenant*'], 'active') }}">
+                <a class="nav-link" href="{{ route('tenant.index') }}">
+                    <i class="fas fa-store-alt"></i>
+                    <span>Restaurante</span>
+                </a>
+            </li>
+        @endif
+
     @endcan
 
     @can('category_show')
