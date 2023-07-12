@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\TenantController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\UserProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -73,6 +74,17 @@ Route::group([
     Route::put('{id}/editar', 'update')->middleware('can:role_edit')->name('update');
 
     Route::delete('{id}/excluir', 'delete')->middleware('can:role_delete')->name('delete');
+});
+
+Route::group([
+    'prefix' => 'dashboard/usuarios/perfil',
+    'as' => 'profile.',
+    'controller' => UserProfileController::class,
+    'middleware' => ['auth'],
+], function () {
+    Route::get('/edit', 'edit')->name('edit');
+
+    Route::put('/update', 'update')->name('update');
 });
 
 Route::group([

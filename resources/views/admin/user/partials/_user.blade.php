@@ -2,7 +2,7 @@
 
     <div class="card-header">
         <h5 class="card-title">
-            Dados da Usuário
+            Dados do Usuário
         </h5>
     </div>
 
