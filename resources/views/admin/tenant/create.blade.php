@@ -14,7 +14,7 @@
     {{-- Respostas --}}
     @include('dashboard.partials.errors')
 
-    <form id="form" method="post" action="{{ route('tenant.store') }}">
+    <form id="form" method="post" action="{{ route('tenant.store') }}" enctype="multipart/form-data">
 
         {{-- Elementos Ocultos --}}
         @csrf

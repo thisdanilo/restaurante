@@ -15,7 +15,7 @@
     @include('dashboard.partials.errors')
     @include('notify::components.notify')
 
-    <form id="form" method="post" action="{{ route('tenant.update', $tenant->id) }}">
+    <form id="form" method="post" action="{{ route('tenant.update', $tenant->id) }}" enctype="multipart/form-data">
 
         {{-- Elementos Ocultos --}}
         @csrf

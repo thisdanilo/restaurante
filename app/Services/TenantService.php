@@ -27,6 +27,10 @@ class TenantService
                 'user_id' => $request['user_id'] ?? auth()->user()->id,
             ];
 
+            if (isset($request['image'])) {
+                $data += ['image' => $request['image']->store('tenants')];
+            }
+
             Tenant::updateOrCreate(['id' => $id], $data);
 
             DB::commit();
