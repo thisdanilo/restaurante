@@ -19,6 +19,12 @@
                     </div>
                 @endif
 
+                {{-- Imagem --}}
+                <div class="col-sm-1 mb-3">
+                    <label class="form-label">Imagem</label>
+                    <img src="{{ asset('storage/' . $tenant->image) }}" width="80">
+                </div>
+
                 {{-- CNPJ --}}
                 <div class="col-sm-3 mb-2">
                     <label class="form-label">CNPJ</label>
@@ -82,6 +88,17 @@
                     </div>
 
                 @endif
+
+                {{-- Imagem --}}
+
+                <div class="col-sm-1 mb-3">
+                    <label class="form-label">Imagem<span class="text-danger">*</span></label>
+                    <img src="{{ asset('storage/' . $tenant->image) }}" width="80">
+                </div>
+                <div class="col-sm-2 mb-2 mt-4">
+                    <input type="file" name="image" class="form-control mt-2" accept=".jpeg, .jpg, .png">
+                </div>
+
                 {{-- CNPJ --}}
                 <div class="col-sm-3 mb-3">
                     <label class="form-label">CNPJ<span class="text-danger">*</span></label>
@@ -148,6 +165,12 @@
                     </div>
 
                 @endif
+
+                {{-- Imagem --}}
+                <div class="col-sm-3 mb-2">
+                    <label class="form-label">Imagem<span class="text-danger">*</span></label>
+                    <input type="file" name="image" class="form-control" accept=".jpeg, .jpg, .png" required>
+                </div>
 
                 {{-- CNPJ --}}
                 <div class="col-sm-3 mb-3">

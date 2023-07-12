@@ -49,6 +49,9 @@ class TenantController extends Controller
                         });
                 }
             )
+            ->editColumn('image', function ($product) {
+                return $product->present()->getImage;
+            })
             ->editColumn(
                 'active',
                 function ($tenant) {
@@ -59,6 +62,7 @@ class TenantController extends Controller
                 return view('admin.tenant.partials._action', compact('model'))->render();
             })
             ->rawColumns([
+                'image',
                 'active',
                 'action',
             ])

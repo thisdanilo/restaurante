@@ -31,6 +31,7 @@
                     <thead>
                         <tr>
                             <th>Razão Social</th>
+                            <th>Image</th>
                             <th>Nome Fantasia</th>
                             <th>CNPJ</th>
                             <th>Telefone</th>

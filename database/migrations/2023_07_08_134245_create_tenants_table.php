@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('tenants', function (Blueprint $table) {
             $table->id();
+            $table->string('image');
             $table->string('legal_name');
             $table->string('trade_name');
             $table->string('cnpj');

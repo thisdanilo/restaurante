@@ -22,6 +22,7 @@ class Tenant extends Model
     protected $table = 'tenants';
 
     protected $fillable = [
+        'image',
         'legal_name',
         'trade_name',
         'cnpj',

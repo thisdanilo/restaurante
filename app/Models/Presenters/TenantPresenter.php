@@ -15,4 +15,15 @@ class TenantPresenter extends Presenter
 
         return '<span class="badge bg-danger">'.'<span class="text-white">'.$this->model->formatted_active.'</span>'.'</span>';
     }
+
+    public function getImage(): string
+    {
+        $url = asset('storage/'.$this->model->image);
+
+        $html = '<img src="'.$url.'" width="80" />';
+
+        $html .= '</a>';
+
+        return $html;
+    }
 }

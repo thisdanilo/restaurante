@@ -27,6 +27,7 @@ class TenantRequest extends FormRequest
         $id = Request::segment(3);
 
         return [
+            'legal_name' => 'image',
             'legal_name' => 'required',
             'trade_name' => 'required',
             'cnpj' => [

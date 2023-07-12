@@ -82,7 +82,7 @@ class User extends Authenticatable
     /** Formata o atributo */
     public function formatTenantName()
     {
-        return $this->tenant->legal_name;
+        return $this->tenant->legal_name ?? '';
     }
 
     /** Não Permite regra admin */

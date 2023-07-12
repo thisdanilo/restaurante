@@ -51,6 +51,9 @@ jQuery(function () {
             },
         },
         columns: [{
+                data: "image",
+            },
+            {
                 data: "legal_name",
             },
             {
