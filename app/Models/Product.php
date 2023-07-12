@@ -65,12 +65,12 @@ class Product extends Model
     /** Obtém a relação */
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class)->withTrashed();
+        return $this->belongsTo(User::class)->withTrashed()->withoutGlobalScopes();
     }
 
     /** Obtém a relação */
     public function category(): BelongsTo
     {
-        return $this->belongsTo(Category::class)->withTrashed();
+        return $this->belongsTo(Category::class)->withTrashed()->withoutGlobalScopes();
     }
 }

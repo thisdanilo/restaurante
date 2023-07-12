@@ -52,7 +52,7 @@ class User extends Authenticatable
     /** Obtém a relação */
     public function tenant(): HasOne
     {
-        return $this->hasOne(Tenant::class);
+        return $this->hasOne(Tenant::class)->withoutGlobalScopes();
     }
 
     /** Obtém a relação */
@@ -82,7 +82,7 @@ class User extends Authenticatable
     /** Formata o atributo */
     public function formatTenantName()
     {
-        return $this->tenants()->pluck('legal_name')->implode(', ');
+        return $this->tenant->legal_name;
     }
 
     /** Não Permite regra admin */
