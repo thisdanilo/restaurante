@@ -22,4 +22,6 @@ Route::group([
     Route::get('/produtos', 'product')->name('product');
 
     Route::get('/restaurantes', 'restaurant')->name('restaurant');
+
+    Route::get('/pesquisa-produtos', 'search')->name('search');
 });
