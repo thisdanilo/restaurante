@@ -6,6 +6,7 @@ use App\Http\Resources\ProductResource;
 use App\Http\Resources\RestaurantResource;
 use App\Models\Product;
 use App\Models\Tenant;
+use Illuminate\Http\Request;
 
 class ApiController
 {
@@ -24,7 +25,7 @@ class ApiController
         return ProductResource::collection($products);
     }
 
-    /** Produtos */
+    /** Restaurantes */
     public function restaurant()
     {
         $restaurants = Tenant::where('active', 1)
@@ -33,5 +34,18 @@ class ApiController
             ->paginate(9);
 
         return RestaurantResource::collection($restaurants);
+    }
+
+    /** Pesquisa */
+    public function search(Request $request)
+    {
+        $product = $request->input('user');
+
+        $products = Product::where('active', 1)
+            ->where('name', 'like', '%'.$product.'%')
+            ->withoutGlobalScopes()
+            ->get();
+
+        return ProductResource::collection($products);
     }
 }
